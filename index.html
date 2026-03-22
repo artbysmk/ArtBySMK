@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ART by SMK - Futuristic Web 3.0 Design</title>
+    <link rel="icon" href="images/favicon.png">
+    <style>
+        :root {
+            --neon-blue-1: #00f3ff;
+            --neon-blue-2: #00c2cc;
+            --neon-blue-3: #009199;
+            --neon-blue-4: #006066;
+            --neon-green: #00ff88;
+            --neon-electric: #00ffcc;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --card-bg: rgba(15, 25, 25, 0.7);
+            --text-color: #e0ffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            overflow-x: hidden;
+            font-family: 'Rajdhani', sans-serif;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 243, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 255, 136, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(0, 145, 153, 0.03) 0%, transparent 30%);
+        }
+        
+        h1, h2, h3, h4, .logo-text, .cta-button, nav a {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        /* Efecto de chispas azules y verdes mejorado */
+        #fire-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+        
+        .fire-spark {
+            position: absolute;
+            background: radial-gradient(circle, #00f3ff, #00ff88, transparent 70%);
+            border-radius: 50%;
+            animation-name: rise;
+            animation-timing-function: ease-out;
+            animation-iteration-count: 1;
+            box-shadow: 0 0 10px #00f3ff, 0 0 20px #00ff88;
+            opacity: 0;
+        }
+        
+        @keyframes rise {
+            0% {
+                transform: translateY(0) translateX(0) scale(0);
+                opacity: 0.8;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(var(--sway)) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: rgba(10, 10, 10, 0.9);
+            padding: 15px 5%;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--neon-blue-1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        
+        .logo-text {
+            font-size: 24px;
+            background: linear-gradient(90deg, var(--neon-blue-1), var(--neon-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 900;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, var(--neon-blue-1), var(--neon-green));
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--neon-blue-1);
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        /* Hero Section with Background Image */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("images/bg__webbw.png");
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+            /* Quitamos el efecto de oscuridad */
+            opacity: 1;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 60px;
+        }
+        
+        .hero-text h1 {
+            font-size: 64px;
+            margin-bottom: 25px;
+            line-height: 1.1;
+            background: linear-gradient(90deg, var(--neon-blue-1), var(--neon-green), var(--neon-blue-3));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .hero-image video.hero-video {
+            max-width: 90%;
+            border-radius: 10px;
+            transition: transform 0.5s;
+            margin-bottom: 30px;
+            background: transparent;
+            pointer-events: none;
+        }
+
+        .hero-image:hover video.hero-video {
+            transform: scale(1.03);
+        }
+
+        
+        .logo-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .small-logo img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .small-logo img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.6);
+        }
+
+        
+        .small-logo:hover {
+            transform: scale(1.1);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--neon-blue-1), var(--neon-green));
+            color: var(--darker-bg);
+            padding: 15px 35px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+        }
+        
+        .cta-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.8);
+        }
+        
+        .cta-button:hover:before {
+            left: 100%;
+        }
+        
+        
+/* Sección del reproductor */
+        .music-section {
+            width: 100%;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+            background-image: url('images/bg_web4.png');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .music-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.85);
+        }
+        
+        .music-container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .music-image {
+            flex: 0 0 auto;
+            margin-right: 40px;
+        }
+        
+        .music-image video {
+            width: 180px;
+            height: 180px;
+            border-radius: 10px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .music-image video:hover {
+            transform: scale(1.05);
+        }
+        
+        .music-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .music-presentation {
+            margin-bottom: 30px;
+        }
+        
+        .music-presentation h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, var(--neon-blue-1), var(--neon-green), var(--neon-blue-3));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            font-weight: 900;
+        }
+        
+        
+        .player-and-playlist {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+        
+        .audio-player {
+            flex: 1;
+            background: rgba(15, 25, 25, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--neon-blue-1);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+        }
+        
+        .track-info {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .track-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--neon-blue-1);
+        }
+        
+        .track-artist {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .player-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .control-btn {
+            background: transparent;
+            border: none;
+            color: var(--neon-blue-1);
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .control-btn:hover {
+            color: var(--neon-green);
+            transform: scale(1.1);
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.7);
+        }
+        
+        .progress-container {
+            flex-grow: 1;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            margin: 0 15px;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-blue-1), var(--neon-green));
+            width: 0%;
+            transition: width 0.1s;
+            box-shadow: 0 0 5px rgba(0, 243, 255, 0.5);
+        }
+        
+        .time-display {
+            font-size: 14px;
+            min-width: 100px;
+            text-align: center;
+            font-family: monospace;
+            color: var(--neon-blue-1);
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .volume-slider {
+            width: 100px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--neon-blue-1);
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0, 243, 255, 0.7);
+        }
+        
+        .playlist {
+            flex: 1;
+            background: rgba(15, 25, 25, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+            overflow-y: auto;
+            max-height: 200px;
+        }
+        
+        .playlist h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--neon-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        
+        .playlist ul {
+            list-style: none;
+        }
+        
+        .playlist-item {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .playlist-item:hover {
+            background: rgba(0, 243, 255, 0.1);
+        }
+        
+        .playlist-item.active {
+            background: rgba(0, 243, 255, 0.2);
+            color: var(--neon-blue-1);
+            box-shadow: 0 0 8px rgba(0, 243, 255, 0.3);
+        }
+        
+        .track-duration {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        
+        /* Quitamos los botones de action-buttons */
+        .action-buttons {
+            display: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .music-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .music-image {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .player-and-playlist {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .playlist {
+                max-height: 150px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .music-section {
+                height: auto;
+                padding: 40px 5%;
+            }
+            
+            .music-presentation h2 {
+                font-size: 32px;
+            }
+        }
+        
+        /* Games Section */
+        .games-section {
+            padding: 80px 5%;
+            background-image: url("images/bg_webgames.png");
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .games-section h2 {
+            font-size: 36px;
+            margin-bottom: 50px;
+            text-align: center;
+            background: linear-gradient(90deg, var(--neon-green), var(--neon-blue-1));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .games-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        
+        .game-tab {
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+            background: rgba(15, 25, 25, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 1px solid var(--neon-blue-1);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+        }
+        
+        .game-tab:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.6);
+        }
+        
+        .game-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .game-tab:hover .game-image img {
+            transform: scale(1.1);
+        }
+        
+        .game-content {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .game-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--neon-blue-1);
+        }
+        
+        .game-content p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .game-link {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--neon-blue-1), var(--neon-green));
+            color: var(--darker-bg);
+            padding: 10px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+        
+        .game-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.8);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--darker-bg) url("images/footer_bg.jpg") center/cover no-repeat;
+            padding: 60px 5% 30px;
+            border-top: 1px solid var(--neon-blue-1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Oscurecer ligeramente para mejor legibilidad del texto */
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 25, 25, 0.65);
+            z-index: 0;
+        }
+
+        .footer-content,
+        .footer-info {
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* Reemplazo IMG por VIDEO */
+        .footer-logo video {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0, 255, 136, 0.4);
+        }
+
+        .footer-logo-text {
+            font-size: 22px;
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--neon-blue-1), var(--neon-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-icon img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .social-icon img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.6);
+        }
+
+        .footer-info {
+            width: 100%;
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 243, 255, 0.3);
+            color: #fff;
+            opacity: 0.8;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-text h1 {
+                font-size: 48px;
+            }
+            
+            .hero-content, .token-content {
+                max-width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            
+            .token-content {
+                flex-direction: column;
+            }
+            
+            .token-text {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                background-color: rgba(10, 10, 10, 0.95);
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: 200px;
+                padding: 20px;
+                display: none;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 24px;
+                cursor: pointer;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+        
+        .menu-toggle {
+            display: none;
+        }
+        
+        /* Section animations */
+        section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Crypto elements */
+        .crypto-badge {
+            display: inline-block;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--neon-blue-1);
+            color: var(--neon-blue-1);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin: 0 5px;
+            font-family: 'Orbitron', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- Container para chispas azules y verdes -->
+    <div id="fire-container"></div>
+    
+    <!-- Header with logo and navigation -->
+    <header>
+        <div class="logo">
+            <div class="logo-img">
+                <img src="images/logo_wolver.png" alt="Logo ART by SMK">
+            </div>
+            <div class="logo-text">ART by SMK</div>
+        </div>
+        <div class="menu-toggle">☰</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#games">Portfolio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section with background image -->
+    <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>ART by SMK - Web 3.0 Design & Development</h1>
+                <p>Welcome to the future of digital art and web development. Where creativity meets blockchain technology to create immersive experiences.</p>
+                <a href="#games" class="cta-button">Explore Portfolio</a>
+            </div>
+
+            <div class="hero-image">
+                <video autoplay loop muted playsinline class="hero-video" type="video/webm">
+                    <source src="images/animacion_wolver.webm" type="video/webm">
+                    Tu navegador no soporta videos webm.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section id="games" class="games-section">
+        <h2>ART by SMK PORTFOLIO</h2>
+        <div class="games-container">
+            <div class="game-tab">
+                <div class="game-image">
+                    <img src="images/wolvergame_2.png" alt="Web 3.0 Design">
+                </div>
+                <div class="game-content">
+                    <h3>WEB DESIGN</h3>
+                    <p>Cutting-edge web design with blockchain integration. Creating immersive digital experiences for the decentralized future.</p>
+                    <a href="https://metabrawl-solitaire.vercel.app/" class="game-link">View Project</a>
+                </div>
+            </div>
+            
+            <div class="game-tab">
+                <div class="game-image">
+                    <img src="images/wolvergame_1.png" alt="Digital Art">
+                </div>
+                <div class="game-content">
+                    <h3>GAMES</h3>
+                    <p>Original digital artworks created with passion and precision. From concept to final piece, every detail matters.</p>
+                    <a href="https://metabrawl.vercel.app/" class="game-link">View Gallery</a>
+                </div>
+            </div>
+            
+            <div class="game-tab">
+                <div class="game-image">
+                    <img src="images/wolvergame_3.png" alt="NFT Development">
+                </div>
+                <div class="game-content">
+                    <h3>ARTS & VFX</h3>
+                    <p>Creating unique NFT collections with smart contract integration. Bringing digital art to the blockchain.</p>
+                    <a href="" class="game-link">Explore NFTs</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección del reproductor musical -->
+    <section class="music-section">
+        <div class="music-container">
+            <div class="music-image">
+                <video id="trackVideo" autoplay loop muted playsinline>
+                    <source src="images/head_wolver.webm" type="video/webm">
+                    Tu navegador no soporta videos webm.
+                </video>
+            </div>
+            <div class="music-content">
+                <div class="music-presentation">
+                    <h2></h2>                    
+                </div>
+                <div class="player-and-playlist">
+                    <div class="audio-player">
+                        <div class="track-info">
+                            <div class="track-title">Digital Dreams</div>
+                            <div class="track-artist">ART by SMK Soundtrack</div>
+                        </div>
+                        <div class="player-controls">
+                            <button class="control-btn" id="prevBtn">⏮</button>
+                            <button class="control-btn" id="playBtn">▶</button>
+                            <button class="control-btn" id="nextBtn">⏭</button>
+                            <div class="progress-container" id="progressContainer">
+                                <div class="progress-bar" id="progressBar"></div>
+                            </div>
+                            <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+                        </div>
+                        <div class="volume-control">
+                            <span>🔊</span>
+                            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70">
+                        </div>
+                    </div>
+                    <div class="playlist">
+                        <h3>CREATIVE PLAYLIST</h3>
+                        <ul id="playlist">
+                            <li class="playlist-item" data-index="0">
+                                <span>Digital Dreams</span>
+                                <span class="track-duration">3:12</span>
+                            </li>
+                            <li class="playlist-item" data-index="1">
+                                <span>Creative Pulse</span>
+                                <span class="track-duration">3:45</span>
+                            </li>
+                            <li class="playlist-item" data-index="2">
+                                <span>Artistic Frontier</span>
+                                <span class="track-duration">3:28</span>
+                            </li>
+                            <li class="playlist-item" data-index="3">
+                                <span>Design Layer</span>
+                                <span class="track-duration">2:15</span>
+                            </li>
+                            <li class="playlist-item" data-index="4">
+                                <span>Future Vision</span>
+                                <span class="track-duration">3:08</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Botones eliminados según solicitud -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <!-- VIDEO logo reemplazando IMAGEN -->
+                <video src="images/Comp_1.webm" autoplay loop muted playsinline></video>
+                <div class="footer-logo-text">ART by SMK</div>
+            </div>
+
+            <div class="social-links">
+                <a href="https://x.com/metabrawlgame" class="social-icon">
+                    <img src="images/bomet_social_1.png" alt="Twitter">
+                </a>
+                <a href="#" class="social-icon">
+                    <img src="images/bomet_social_2.png" alt="Discord">
+                </a>
+                <a href="https://t.me/+iH1OrZQlsc4xYTA0" class="social-icon">
+                    <img src="images/bomet_social_3.png" alt="Telegram">
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-info">
+            <p>ART by SMK - Digital art, design and Web 3.0 development. Creating the future.</p>
+            <p>© 2025 ART by SMK - All rights reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('nav ul');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('show');
+            });
+        }
+
+        // Section animations on scroll
+        const sections = document.querySelectorAll('section');
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Make hero section visible immediately
+        document.querySelector('.hero').classList.add('visible');
+        
+        // Audio Player Functionality
+        const audioPlayer = {
+            audio: new Audio(),
+            isPlaying: false,
+            currentTrack: 0,
+            tracks: [
+                {
+                    title: "Digital Dreams",
+                    artist: "ART by SMK Soundtrack",
+                    src: "music/Metabrawl Coming.mp3",
+                    duration: "3:12",
+                    video: "images/head_wolver.webm"
+                },
+                {
+                    title: "Creative Pulse", 
+                    artist: "ART by SMK Soundtrack", 
+                    src: "music/MetaBrawl Hustle.mp3",
+                    duration: "3:45",
+                    video: "images/head_wolver.webm"
+                },
+                {
+                    title: "Artistic Frontier",
+                    artist: "ART by SMK Soundtrack",
+                    src: "music/MetaBrawl.mp3",
+                    duration: "3:28",
+                    video: "images/head_wolver.webm"
+                },
+                {
+                    title: "Design Layer",
+                    artist: "ART by SMK Soundtrack",
+                    src: "music/Money Metabrawl.mp3",
+                    duration: "2:15",
+                    video: "images/head_wolver.webm"
+                },
+                {
+                    title: "Future Vision",
+                    artist: "ART by SMK Soundtrack",
+                    src: "music/MetaBrawl Anthem.mp3",
+                    duration: "3:08",
+                    video: "images/head_wolver.webm"
+                }
+            ],
+            
+            init: function() {
+                this.audio.volume = 0.7;
+                this.loadTrack(this.currentTrack);
+                
+                // Event listeners
+                document.getElementById('playBtn').addEventListener('click', () => this.togglePlay());
+                document.getElementById('prevBtn').addEventListener('click', () => this.prevTrack());
+                document.getElementById('nextBtn').addEventListener('click', () => this.nextTrack());
+                document.getElementById('volumeSlider').addEventListener('input', (e) => this.setVolume(e.target.value));
+                document.getElementById('progressContainer').addEventListener('click', (e) => this.setProgress(e));
+                
+                // Playlist event listeners
+                const playlistItems = document.querySelectorAll('.playlist-item');
+                playlistItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        const index = parseInt(item.getAttribute('data-index'));
+                        this.loadTrack(index);
+                        if (this.isPlaying) {
+                            this.audio.play();
+                        }
+                    });
+                });
+                
+                // Audio event listeners
+                this.audio.addEventListener('timeupdate', () => this.updateProgress());
+                this.audio.addEventListener('ended', () => this.nextTrack());
+            },
+            
+            loadTrack: function(index) {
+                this.currentTrack = index;
+                const track = this.tracks[index];
+                this.audio.src = track.src;
+                
+                document.querySelector('.track-title').textContent = track.title;
+                document.querySelector('.track-artist').textContent = track.artist;
+                
+                // Actualizar video en lugar de imagen
+                const trackVideo = document.getElementById('trackVideo');
+                trackVideo.src = track.video;
+                trackVideo.load();
+                
+                // Update active playlist item
+                document.querySelectorAll('.playlist-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                document.querySelector(`.playlist-item[data-index="${index}"]`).classList.add('active');
+                
+                // Reset progress
+                document.getElementById('progressBar').style.width = '0%';
+                document.getElementById('timeDisplay').textContent = '0:00 / ' + track.duration;
+            },
+            
+            togglePlay: function() {
+                if (this.isPlaying) {
+                    this.audio.pause();
+                    document.getElementById('playBtn').textContent = '▶';
+                } else {
+                    this.audio.play();
+                    document.getElementById('playBtn').textContent = '⏸';
+                }
+                this.isPlaying = !this.isPlaying;
+            },
+            
+            prevTrack: function() {
+                this.currentTrack--;
+                if (this.currentTrack < 0) {
+                    this.currentTrack = this.tracks.length - 1;
+                }
+                this.loadTrack(this.currentTrack);
+                if (this.isPlaying) {
+                    this.audio.play();
+                }
+            },
+            
+            nextTrack: function() {
+                this.currentTrack++;
+                if (this.currentTrack >= this.tracks.length) {
+                    this.currentTrack = 0;
+                }
+                this.loadTrack(this.currentTrack);
+                if (this.isPlaying) {
+                    this.audio.play();
+                }
+            },
+            
+            setVolume: function(value) {
+                this.audio.volume = value / 100;
+            },
+            
+            setProgress: function(e) {
+                const progressContainer = document.getElementById('progressContainer');
+                const width = progressContainer.clientWidth;
+                const clickX = e.offsetX;
+                const duration = this.audio.duration;
+                
+                this.audio.currentTime = (clickX / width) * duration;
+            },
+            
+            updateProgress: function() {
+                const currentTime = this.audio.currentTime;
+                const duration = this.audio.duration;
+                
+                if (duration) {
+                    const progressPercent = (currentTime / duration) * 100;
+                    document.getElementById('progressBar').style.width = `${progressPercent}%`;
+                    
+                    // Format time
+                    const currentMinutes = Math.floor(currentTime / 60);
+                    const currentSeconds = Math.floor(currentTime % 60);
+                    const durationMinutes = Math.floor(duration / 60);
+                    const durationSeconds = Math.floor(duration % 60);
+                    
+                    document.getElementById('timeDisplay').textContent = 
+                        `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds} / ${durationMinutes}:${durationSeconds < 10 ? '0' : ''}${durationSeconds}`;
+                }
+            }
+        };
+
+        // Initialize the audio player when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            audioPlayer.init();
+        });
+
+        // Efecto de chispas azules y verdes mejorado
+        function createFireSpark() {
+            const fireContainer = document.getElementById('fire-container');
+            const spark = document.createElement('div');
+            spark.classList.add('fire-spark');
+            
+            // Tamaño aleatorio más variado
+            const size = Math.random() * 10 + 2;
+            spark.style.width = `${size}px`;
+            spark.style.height = `${size}px`;
+            
+            // Posición horizontal aleatoria
+            spark.style.left = `${Math.random() * 100}%`;
+            
+            // Posición inicial en la parte inferior
+            spark.style.bottom = '0px';
+            
+            // Animación personalizada con movimiento lateral
+            const duration = Math.random() * 8 + 4; // 4-12 segundos
+            const sway = (Math.random() - 0.5) * 100; // Movimiento lateral aleatorio
+            
+            // Usar CSS custom properties para el movimiento lateral
+            spark.style.setProperty('--sway', `${sway}px`);
+            spark.style.animationDuration = `${duration}s`;
+            
+            // Opacidad y brillo variables
+            const opacity = Math.random() * 0.7 + 0.3;
+            spark.style.opacity = '0';
+            
+            // Añadir la chispa al contenedor
+            fireContainer.appendChild(spark);
+            
+            // Eliminar la chispa después de que termine la animación
+            setTimeout(() => {
+                if (spark.parentNode) {
+                    spark.remove();
+                }
+            }, duration * 1000);
+        }
+        
+        // Crear chispas con intervalo más espaciado para mejor rendimiento
+        setInterval(createFireSpark, 200);
+        
+        // Crear algunas chispas iniciales con retrasos escalonados
+        for (let i = 0; i < 15; i++) {
+            setTimeout(createFireSpark, Math.random() * 3000);
+        }
+    </script>
+</body>
+</html>
